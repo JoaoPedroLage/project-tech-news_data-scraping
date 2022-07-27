@@ -51,3 +51,12 @@ def search_by_tag(tag):
 # Requisito 9
 def search_by_category(category):
     """Seu código deve vir aqui"""
+    search = []
+    news = search_news({
+        "category": {"$regex": f"{category.lower().capitalize()}"}}
+        )
+
+    for new in news:
+        search.append(tuple([new['title'], new['url']]))
+
+    return search
